@@ -1,0 +1,12 @@
+body {
+    background-color: pink;
+}
+
+button {
+    width: 300px;
+    height: 100px;
+    margin: 50px;
+    font-size: 50px;
+    font-family: helvetica;
+
+}
