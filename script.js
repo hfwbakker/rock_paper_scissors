@@ -1,33 +1,62 @@
-let playerSelection = []
+let compScore = 0;
+let playerScore = 0;
+let drawScore = 0;
+
+const msgBoard = document.querySelector("#scoreboard");
+const scoreCounter = document.querySelector("#scoreCounter");
+
+let playerMsg = document.createElement("h3");
+playerMsg.textContent = "> Scoreboard";
+msgBoard.appendChild(playerMsg);
+
+let compMsg = document.createElement("h3");
+compMsg.textContent = "> ";
+msgBoard.appendChild(compMsg);
+
+let resultMsg = document.createElement("h3");
+resultMsg.textContent = "> ";
+msgBoard.appendChild(resultMsg);
+
+let playerWins = document.createElement("h3");
+playerWins.textContent = `Player score: ${playerScore}`;
+scoreCounter.appendChild(playerWins);
+
+let compWins = document.createElement("h3");
+compWins.textContent = `Comp score: ${compScore}`;
+scoreCounter.appendChild(compWins);
+
+let noWins = document.createElement("h3");
+noWins.textContent = `Draws: ${drawScore}`;
+scoreCounter.appendChild(noWins);
+
+
+// let playerSelection = []
 
 const rock = document.querySelector("#rock");
 rock.addEventListener("click", () => {
-    console.log("Player picked rock");
+    playerMsg.textContent = "> Player picked rock"
     playerSelection = "rock"
     fuknPlay(playerSelection, computerPlay())
 });
 
 const paper = document.querySelector("#paper");
 paper.addEventListener("click", () => {
-    console.log("Player picked paper");
+    playerMsg.textContent = "> Player picked paper";
     playerSelection = "paper"
     fuknPlay(playerSelection, computerPlay())
 });
 
 const scissors = document.querySelector("#scissors");
 scissors.addEventListener("click", () => {
-    console.log("Player picked scissors");
+    playerMsg.textContent = "> Player picked scissors";
     playerSelection = "scissors"
     fuknPlay(playerSelection, computerPlay())
 });
 
-let compScore = 0
-let playerScore = 0
-
 function computerPlay() {
     let options = ["rock", "paper", "scissors"];
     let compSelect = options[Math.floor(Math.random() * options.length)]
-    console.log(`Computer picked ${compSelect}`);
+    compMsg.textContent = `> Computer picked ${compSelect}`;
     return compSelect;
 };
 
@@ -39,35 +68,46 @@ function computerPlay() {
 
 function fuknPlay(a, b) {
     if(a == b) {
-        console.log("draw");
+        resultMsg.textContent = "> Draw";
+        drawScore += 1;
+        noWins.textContent = `Draws: ${drawScore}`
     } else if (a == "rock") {
         if(b == "paper") {
-            console.log("Computer wins.");
-            compScore += 1
+            resultMsg.textContent = "> Computer wins.";
+            compScore += 1;
+            compWins.textContent = `Comp score: ${compScore}`;
         } else {
-            console.log("Player wins");
-            playerScore += 1
+            resultMsg.textContent = "> Player wins";
+            playerScore += 1;
+            playerWins.textContent =`Player score: ${playerScore}`;
         }
     } else if(a == "paper") {
         if(b == "scissors") {
-            console.log("Computer wins");
+            resultMsg.textContent = "> Computer wins.";
             compScore += 1
+            compWins.textContent = `Comp score: ${compScore}`
         } else {
-            console.log("Player wins");
+            resultMsg.textContent = "> Player wins";
             playerScore += 1
+            playerWins.textContent =`Player score: ${playerScore}`;
         }
     } else if(a == "scissors") {
         if(b == "rock") {
-            console.log("Computer wins")
+            resultMsg.textContent = "> Computer wins.";
             compScore += 1
+            compWins.textContent = `Comp score: ${compScore}`
         } else {
-            console.log("Player wins");
+            resultMsg.textContent = "> Player wins";
             playerScore += 1
+            playerWins.textContent =`Player score: ${playerScore}`;
         }
     } else {
         console.log("....wtf did you input?");
     }
 }
+
+
+
 
 // function game() {
 //     let computerSelection = computerPlay();
