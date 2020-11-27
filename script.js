@@ -2,6 +2,7 @@ let compScore = 0;
 let playerScore = 0;
 let drawScore = 0;
 
+// DOM SHIZZLE //
 const msgBoard = document.querySelector("#scoreboard");
 const scoreCounter = document.querySelector("#scoreCounter");
 
@@ -29,9 +30,7 @@ let noWins = document.createElement("h3");
 noWins.textContent = `Draws: ${drawScore}`;
 scoreCounter.appendChild(noWins);
 
-
-// let playerSelection = []
-
+// ROCK PAPER SCISSORS BUTTONS //
 const rock = document.querySelector("#rock");
 rock.addEventListener("click", () => {
     playerMsg.textContent = "> Player picked rock"
@@ -53,21 +52,20 @@ scissors.addEventListener("click", () => {
     fuknPlay(playerSelection, computerPlay())
 });
 
+// COMPUTER PLAY UPON PLAYER SELECTION //
 function computerPlay() {
+    console.log("Executing computerPlay()")
     let options = ["rock", "paper", "scissors"];
     let compSelect = options[Math.floor(Math.random() * options.length)]
     compMsg.textContent = `> Computer picked ${compSelect}`;
     return compSelect;
 };
 
-// function playRound() {
-
-//     console.log("Select rock, paper, or scissors.")
-//     return playerSelection;
-// };
-
+// GAME LOGIC - WHO WINS AND SCORE UPDATE //
 function fuknPlay(a, b) {
+    console.log("Executing fuknPlay()")
     if(a == b) {
+        console.log("fuknPlay() -> if a == b")
         resultMsg.textContent = "> Draw";
         drawScore += 1;
         noWins.textContent = `Draws: ${drawScore}`
@@ -104,29 +102,22 @@ function fuknPlay(a, b) {
     } else {
         console.log("....wtf did you input?");
     }
+    if (playerScore >= 5) {
+        alert("Player wins!");
+        playerScore = 0;
+        compScore = 0;
+        drawScore = 0;
+        playerWins.textContent =`Player score: ${playerScore}`;
+        compWins.textContent = `Comp score: ${compScore}`;
+        noWins.textContent = `Draws: ${drawScore}`
+    }
+    if (compScore >= 5) {
+        alert("Computer wins!");
+        playerScore = 0;
+        compScore = 0;
+        drawScore = 0;
+        playerWins.textContent =`Player score: ${playerScore}`;
+        compWins.textContent = `Comp score: ${compScore}`;
+        noWins.textContent = `Draws: ${drawScore}`
+    }
 }
-
-
-
-
-// function game() {
-//     let computerSelection = computerPlay();
-//     let playerSelection = playRound();
-//     fuknPlay(playerSelection, computerSelection);
-// }
-
-// for (let i = 1; i <= 5; i++){
-//     console.log(`Round ${i}`)
-//     console.log(`Player score is ${playerScore}, computer score is ${compScore}.`)
-//     game();
-// }
-
-// if (compScore > playerScore){
-//     alert("comp wins");
-// } else if (playerScore > compScore){
-//     alert("player wins")
-// } else {
-//     console.log("draw")
-// }
-
-// game();
